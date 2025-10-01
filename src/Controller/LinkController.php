@@ -11,16 +11,41 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use App\Dto\Request\LinkCreateRequest;
 use Knp\Component\Pager\PaginatorInterface;
+use App\Form\LinkType;
 
 class LinkController extends AbstractController
 {
     #[Route('/', name: 'link_form', methods: ['GET', 'POST'])]
-    public function showForm(Request $request): Response
+    public function showForm(Request $request, LinkService $linkService): Response
     {
+        $dto = new LinkCreateRequest();
+
         $shortUrl = $request->getSession()->getFlashBag()->get('shortUrl');
+        
+        $form = $this->createForm(LinkType::class, $dto);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $link = $linkService->create($dto->url, $dto->timeToLive);
+
+            if (!$link) {
+                $this->addFlash('error', 'Не вдалося створити посилання.');
+                return $this->redirectToRoute('link_form');
+            }
+
+            $shortUrl = $this->generateUrl(
+                'link_redirect',
+                ['code' => $link->getShortCode()],
+                UrlGeneratorInterface::ABSOLUTE_URL
+            );
+
+            $this->addFlash('shortUrl', $shortUrl);
+
+            return $this->redirectToRoute('link_form');
+        }
 
         return $this->render('link/index.html.twig', [
             'shortUrl' => $shortUrl[0] ?? null,
+            'form' => $form,
         ]);
     }
 
