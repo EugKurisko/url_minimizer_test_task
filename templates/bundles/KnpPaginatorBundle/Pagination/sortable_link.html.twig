@@ -1,0 +1,10 @@
+<a href="{{ options.href|raw }}" class="text-decoration-none">
+    {{ title }}
+    {% if direction is defined %}
+        {% if direction == 'asc' %}
+            <i class="bi bi-arrow-up"></i>
+        {% else %}
+            <i class="bi bi-arrow-down"></i>
+        {% endif %}
+    {% endif %}
+</a>

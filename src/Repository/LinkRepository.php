@@ -11,6 +11,8 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class LinkRepository extends ServiceEntityRepository
 {
+    public const LINK_LIST_PER_PAGE = 10;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Link::class);

@@ -1,12 +1,20 @@
-<table class="table table-bordered table-hover align-middle text-center">
-<thead>
+<table class="table table-bordered table-hover align-middle text-center table-fixed w-100">
+    <colgroup>
+        <col style="width: 5%;">
+        <col style="width: 25%;">
+        <col style="width: 15%;">
+        <col style="width: 10%;">
+        <col style="width: 20%;">
+        <col style="width: 25%;">
+    </colgroup>
+    <thead class="table-light">
             <tr>
-                <th>ID</th>
-                <th>Оригінальний URL</th>
-                <th>Скорочений код</th>
-                <th>Кліки</th>
-                <th>Створено</th>
-                <th>Закінчується строк дії</th>
+                <th>{{ knp_pagination_sortable(links, 'ID', 'links.id') }}</th>
+                <th>{{ knp_pagination_sortable(links, 'Оригінальний URL', 'links.originalUrl') }}</th>
+                <th>{{ knp_pagination_sortable(links, 'Скорочений код', 'links.shortCode') }}</th>
+                <th>{{ knp_pagination_sortable(links, 'Кліки', 'links.clicks') }}</th>
+                <th>{{ knp_pagination_sortable(links, 'Створено', 'links.createdAt') }}</th>
+                <th>{{ knp_pagination_sortable(links, 'Закінчується строк дії', 'links.expiresAt') }}</th>
             </tr>
         </thead>
         <tbody>

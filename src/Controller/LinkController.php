@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use App\Dto\Request\LinkCreateRequest;
+use Knp\Component\Pager\PaginatorInterface;
 
 class LinkController extends AbstractController
 {
@@ -71,9 +72,21 @@ class LinkController extends AbstractController
     }
 
     #[Route('/all_links', name: 'all_links', methods: ['GET'])]
-    public function allLinks(LinkRepository $repo): Response
+    public function allLinks(LinkRepository $repo, PaginatorInterface $paginator, Request $request): Response
     {
-        $links = $repo->findAll();
+        $query = $repo->createQueryBuilder('links')
+                  ->orderBy('links.id', 'ASC')
+                  ->getQuery();
+
+        $links = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            LinkRepository::LINK_LIST_PER_PAGE,
+            [
+                'defaultSortFieldName' => 'links.id',
+                'defaultSortDirection' => 'asc',
+            ]
+        );
 
         return $this->render('link/list/links_list.html.twig', [
             'links' => $links,
