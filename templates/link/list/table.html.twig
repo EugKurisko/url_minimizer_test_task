@@ -1,0 +1,38 @@
+<table class="table table-bordered table-hover align-middle text-center">
+<thead>
+            <tr>
+                <th>ID</th>
+                <th>Оригінальний URL</th>
+                <th>Скорочений код</th>
+                <th>Кліки</th>
+                <th>Створено</th>
+                <th>Закінчується строк дії</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for link in links %}
+                <tr>
+                    <td>{{ link.id }}</td>
+                    <td><a href="{{ link.originalUrl }}" target="_blank">{{ link.originalUrl }}</a></td>
+                    <td>
+                        <a href="{{ path('link_redirect', { code: link.shortCode }) }}" target="_blank">
+                            {{ link.shortCode }}
+                        </a>
+                    </td>
+                    <td>{{ link.clicks }}</td>
+                    <td>{{ link.createdAt|date('Y-m-d H:i') }}</td>
+                    <td>
+                        {% if link.expiresAt %}
+                            {{ link.expiresAt|date('Y-m-d H:i') }}
+                        {% else %}
+                            —
+                        {% endif %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">Немає створених посилань</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+</table>

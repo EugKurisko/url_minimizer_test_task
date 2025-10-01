@@ -1,0 +1,5 @@
+{% for error in app.flashes('error') %}
+    <div style="color: red; margin-top: 10px;">
+        {{ error }}
+    </div>
+{% endfor %}

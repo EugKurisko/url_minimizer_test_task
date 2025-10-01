@@ -1,0 +1,5 @@
+<form method="POST" action="{{ path('link_create') }}" style="max-width: 500px; width: 100%;">
+    <input class="form-control" type="text" name="url" placeholder="Введіть URL" required>
+    <input type="number" class="form-control mt-4" name="timeToLive" placeholder="Час життя (години)" min="1" step="1">
+    <button type="submit" class="btn btn-success mt-4">Скоротити url</button>
+</form>

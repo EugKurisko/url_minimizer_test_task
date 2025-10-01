@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1 class="text-center mt-3">Всі посилання</h1>
+
+<div class="mx-5">
+    {% include "link/list/table.html.twig" %}
+</div>
+
+<div class="text-center mb-3">
+    {% include 'link/btns/redirect_to_form.html.twig' %}
+</div>
+
+{% endblock %}

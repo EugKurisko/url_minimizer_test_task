@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="text-center">
+    <h1 class="my-3">URL мініміфікатор</h1>
+
+    <div class="container mt-5 d-flex justify-content-center">
+        {% include 'link/forms/create_link.html.twig' %}
+    </div>
+
+    {% include 'link/errors/list.html.twig' %}
+
+    {% if shortUrl %}
+        <h1>Ваше коротке посилання:</h1>
+        {% include 'link/short_url.html.twig' %}
+    {% endif %}
+
+    {% include 'link/btns/all_links.html.twig' %}
+</div>
+
+{% endblock %}
