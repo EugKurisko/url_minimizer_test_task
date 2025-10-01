@@ -62,7 +62,7 @@ class LinkController extends AbstractController
         }
 
         if ($link->isExpired()) {
-            return new Response("Посилання прострочене", 410);
+            return new Response("Посилання " . $link->getOriginalUrl() . " (" . $link->getShortCode() . ") прострочене", 410);
         }
 
         $link->incrementClicks();
