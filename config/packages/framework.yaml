@@ -13,3 +13,6 @@ when@test:
         test: true
         session:
             storage_factory_id: session.storage.factory.mock_file
+        default_locale: 'uk'
+        timezone: 'ETC/GMT-2'
+
