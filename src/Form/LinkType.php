@@ -17,27 +17,37 @@ class LinkType extends AbstractType
         $builder
             ->add('url', UrlType::class, [
                 'label' => 'Оригінальний URL',
-                'row_attr' => ['class' => 'mb-3'],
                 'required' => true,
+                 'row_attr' => [
+                    'class' => 'col-auto',
+                ],
                 'attr' => [
-                    'placeholder' => 'Введіть URL', 'class' => 'form-control',
-                    'style' => 'max-width:700px;',
+                    'placeholder' => 'Введіть URL',
+                    'class' => 'form-control',
+                    'style' => 'width:300px;',
                 ],
             ])
             ->add('timeToLive', IntegerType::class, [
-                'label' => 'Час життя (години)',
+                'label' => 'Час існування (години)',
                 'required' => true,
+                'row_attr' => [
+                    'class' => 'col-auto',
+                ],
                 'attr' => [
                     'min' => 1,
                     'step' => 1,
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'style' => 'width:170px;',
                 ],
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Скоротити url',
-                'attr' => [
-                    'class' => 'btn btn-success mt-3 w-100'
+                'row_attr' => [
+                    'class' => 'col-12 d-flex justify-content-center mt-5',
                 ],
+                'attr' => [
+                    'class' => 'btn btn-success px-4',
+                ],    
             ]);
     }
 
