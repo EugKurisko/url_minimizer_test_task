@@ -3,6 +3,6 @@ Application set up:
 2. use sqlite db
 3. run composer install
 4. in your .env DATABASE_URL="sqlite:///%kernel.project_dir%/var/minimizer_test_task_db.db"
-5. run php bin/console doctrine:database:create
+5. run php bin/console doctrine:database:create (або використати прикріплений дамп minimizer_test_task_db.db замість кроків 5-6)
 6. run php bin/console doctrine:migrations:migrate
 7. run php -S localhost:8000 -t public
